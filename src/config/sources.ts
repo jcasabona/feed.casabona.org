@@ -57,6 +57,6 @@ export const podcastLinks = [
   { name: 'RSS', url: 'https://streamlined.fm/feed/podcast' },
 ];
 
-export const SITE_TITLE = 'feed.casabona.org';
-export const PAGE_SIZE = 30;
+export const SITE_TITLE = 'The Feed by Joe Casabona';
+export const PAGE_SIZE = 20;
 export const TIMEZONE = 'America/New_York';
