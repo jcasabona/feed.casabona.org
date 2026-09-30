@@ -1,0 +1,29 @@
+---
+import '../styles/global.css';
+import { SITE_TITLE } from '../config/sources';
+interface Props { title?: string; description?: string }
+const { title, description = 'Videos, podcast episodes, posts, notes and photos from Joe Casabona, in one timeline.' } = Astro.props;
+const pageTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site)} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Geologica:wght@300..800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="/" class="site-title">{SITE_TITLE}</a>
+    </header>
+    <main><slot /></main>
+    <footer class="site-footer">
+      <a href="https://casabona.org">casabona.org</a> · <a href="https://streamlined.fm">streamlined.fm</a>
+    </footer>
+  </body>
+</html>

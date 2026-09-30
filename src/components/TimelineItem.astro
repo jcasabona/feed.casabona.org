@@ -1,0 +1,72 @@
+---
+import { render } from 'astro:content';
+import { sources, labelTextColor, podcastLinks } from '../config/sources';
+import { formatStamp } from '../lib/time';
+import type { TimelineEntry } from '../lib/timeline';
+
+interface Props { entry: TimelineEntry; permalink?: boolean }
+const { entry, permalink = false } = Astro.props;
+
+const sourceId = entry.kind === 'external' ? entry.item.source : entry.kind;
+const source = sources[sourceId];
+const localHref = entry.kind === 'note' ? `/notes/${entry.slug}/` : entry.kind === 'photo' ? `/photos/${entry.slug}/` : undefined;
+const NoteBody = entry.kind === 'note' ? (await render(entry.entry)).Content : null;
+const Caption = entry.kind === 'photo' && entry.entry.body?.trim() ? (await render(entry.entry)).Content : null;
+const item = entry.kind === 'external' ? entry.item : null;
+const isShort = item?.url.includes('/shorts/');
+---
+<article class="row" id={entry.kind === 'external' ? undefined : entry.slug}>
+  <div class="meta">
+    <span class="label" style={`background:${source.color};color:${labelTextColor(source.color)}`}>{source.label}</span>
+    <span class="stamp">
+      {localHref && !permalink
+        ? <a href={localHref}><time datetime={entry.date.toISOString()}>{formatStamp(entry.date)}</time></a>
+        : <time datetime={entry.date.toISOString()}>{formatStamp(entry.date)}</time>}
+    </span>
+  </div>
+
+  <div class="content">
+    {item && (
+      <>
+        <h2><a href={item.url}>{item.title}</a></h2>
+        {item.media?.type === 'youtube' && (
+          <div class:list={['embed', { portrait: isShort }]}>
+            <iframe
+              src={`https://www.youtube-nocookie.com/embed/${item.media.videoId}`}
+              title={item.title}
+              loading="lazy"
+              allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+            ></iframe>
+          </div>
+        )}
+        {item.media?.type === 'audio' && (
+          <>
+            <audio controls preload="none" src={item.media.url}></audio>
+            <div class="subscribe">
+              <span>Subscribe:</span>
+              {podcastLinks.map((l) => <a href={l.url}>{l.name}</a>)}
+            </div>
+          </>
+        )}
+        {!item.media && item.excerpt && <p class="excerpt">{item.excerpt}</p>}
+        {item.media?.type === 'audio' && item.excerpt && <p class="excerpt" style="margin-top:.75rem">{item.excerpt}</p>}
+      </>
+    )}
+
+    {entry.kind === 'note' && NoteBody && <div class="note-body"><NoteBody /></div>}
+
+    {entry.kind === 'photo' && (
+      <>
+        <div class:list={['photos', { multi: entry.entry.data.images.length > 1 }]}>
+          {entry.entry.data.images.map((img) => {
+            const tag = <img src={img.image} alt={img.alt} loading="lazy" decoding="async" />;
+            return localHref && !permalink ? <a href={localHref}>{tag}</a> : tag;
+          })}
+        </div>
+        {Caption && <div class="caption"><Caption /></div>}
+      </>
+    )}
+  </div>
+</article>

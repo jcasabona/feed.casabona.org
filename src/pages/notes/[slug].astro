@@ -1,0 +1,15 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
+import { getNotes } from '../../lib/timeline';
+
+export const getStaticPaths = (async () =>
+  (await getNotes()).map((entry) => ({ params: { slug: entry.slug }, props: { entry } }))) satisfies GetStaticPaths;
+
+const { entry } = Astro.props;
+---
+<Base title="Note">
+  <a class="back" href="/">← Timeline</a>
+  <TimelineItem entry={entry} permalink />
+</Base>

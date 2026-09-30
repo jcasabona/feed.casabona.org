@@ -1,0 +1,66 @@
+# Pages CMS config: https://pagescms.org/docs/configuration/
+media:
+  input: public/media
+  output: /media
+
+content:
+  - name: notes
+    label: Notes
+    type: collection
+    path: src/content/notes
+    filename: "{year}-{month}-{day}-{hour}{minute}.md"
+    view:
+      fields: [date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          time: true
+      - name: body
+        label: Note
+        type: rich-text
+        required: true
+
+  - name: photos
+    label: Photos
+    type: collection
+    path: src/content/photos
+    filename: "{year}-{month}-{day}-{hour}{minute}.md"
+    view:
+      fields: [date]
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: date
+        label: Date
+        type: date
+        required: true
+        options:
+          time: true
+      - name: images
+        label: Images
+        type: object
+        list:
+          min: 1
+        required: true
+        fields:
+          - name: image
+            label: Image
+            type: image
+            required: true
+          - name: alt
+            label: Alt text
+            type: string
+            required: true
+      - name: body
+        label: Caption
+        type: rich-text
+        required: false

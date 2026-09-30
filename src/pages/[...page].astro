@@ -1,0 +1,20 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../layouts/Base.astro';
+import TimelineItem from '../components/TimelineItem.astro';
+import { getTimeline } from '../lib/timeline';
+import { PAGE_SIZE } from '../config/sources';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  return paginate(await getTimeline(), { pageSize: PAGE_SIZE });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+<Base title={page.currentPage > 1 ? `Page ${page.currentPage}` : undefined}>
+  {page.data.map((entry) => <TimelineItem entry={entry} />)}
+  <nav class="pager" aria-label="Pagination">
+    <span>{page.url.next && <a href={page.url.next} rel="next">← Older</a>}</span>
+    <span>{page.url.prev && <a href={page.url.prev} rel="prev">Newer →</a>}</span>
+  </nav>
+</Base>

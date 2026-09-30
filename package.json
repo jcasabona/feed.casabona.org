@@ -1,0 +1,16 @@
+{
+  "name": "feed-casabona-org",
+  "type": "module",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "fetch": "node scripts/fetch-feeds.mjs",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "fast-xml-parser": "^4.5.0"
+  }
+}
