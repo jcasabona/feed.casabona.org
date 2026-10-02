@@ -1,6 +1,18 @@
 {
-  "updated": "2026-10-01T00:52:45.248Z",
+  "updated": "2026-10-02T20:22:07.955Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "What I Learned at Ecamm's Creator Camp [Friday Wrap-Up]",
+      "url": "https://share.transistor.fm/s/1567872e",
+      "date": "2026-10-02T20:09:26.000Z",
+      "excerpt": "This week I share what I learned after speaking at Ecamm's Creator Camp: why listing the simple automations I use landed better than I expected, and how my \"AI is for tasks, not craft\" line ended up on the quote…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/1567872e/e2809164.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "The Future of Search isn't SEO (It's AI) #HubSpotPartner",
