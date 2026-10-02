@@ -60,10 +60,11 @@ const isShort = item?.url.includes('/shorts/');
     {entry.kind === 'photo' && (
       <>
         <div class:list={['photos', { multi: entry.entry.data.images.length > 1 }]}>
-          {entry.entry.data.images.map((img) => {
-            const tag = <img src={img.image} alt={img.alt} loading="lazy" decoding="async" />;
-            return localHref && !permalink ? <a href={localHref}>{tag}</a> : tag;
-          })}
+          {entry.entry.data.images.map((img) => (
+            <a href={img.image} data-lightbox={entry.slug} data-alt={img.alt}>
+              <img src={img.image} alt={img.alt} loading="lazy" decoding="async" />
+            </a>
+          ))}
         </div>
         {Caption && <div class="caption"><Caption /></div>}
       </>

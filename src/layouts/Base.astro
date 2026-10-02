@@ -22,8 +22,51 @@ const pageTitle = title ? `${title} · ${SITE_TITLE}` : SITE_TITLE;
       <a href="/" class="site-title">{SITE_TITLE}</a>
     </header>
     <main><slot /></main>
+    <dialog id="lightbox" aria-label="Photo viewer">
+      <figure><img alt="" /></figure>
+      <p class="lb-alt"></p>
+      <button class="lb-close" aria-label="Close">×</button>
+      <button class="lb-prev" aria-label="Previous photo">‹</button>
+      <button class="lb-next" aria-label="Next photo">›</button>
+    </dialog>
     <footer class="site-footer">
       <a href="https://casabona.org">casabona.org</a> · <a href="https://streamlined.fm">streamlined.fm</a>
     </footer>
+    <script>
+      const box = document.getElementById('lightbox') as HTMLDialogElement;
+      const img = box.querySelector('img')!;
+      const alt = box.querySelector('.lb-alt')!;
+      let group: HTMLAnchorElement[] = [];
+      let i = 0;
+
+      function show(n: number) {
+        i = (n + group.length) % group.length;
+        img.src = group[i].href;
+        img.alt = group[i].dataset.alt ?? '';
+        alt.textContent = group[i].dataset.alt ?? '';
+      }
+
+      document.addEventListener('click', (e) => {
+        const a = (e.target as Element).closest<HTMLAnchorElement>('a[data-lightbox]');
+        if (!a || e.metaKey || e.ctrlKey || e.shiftKey) return;
+        e.preventDefault();
+        group = [...document.querySelectorAll<HTMLAnchorElement>(`a[data-lightbox="${a.dataset.lightbox}"]`)];
+        box.toggleAttribute('data-single', group.length < 2);
+        show(group.indexOf(a));
+        box.showModal();
+      });
+
+      box.addEventListener('click', (e) => {
+        const t = e.target as Element;
+        if (t.closest('.lb-prev')) show(i - 1);
+        else if (t.closest('.lb-next')) show(i + 1);
+        else if (t.closest('.lb-close') || t === box || t.tagName === 'FIGURE') box.close();
+      });
+
+      box.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') show(i - 1);
+        if (e.key === 'ArrowRight') show(i + 1);
+      });
+    </script>
   </body>
 </html>
