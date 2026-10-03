@@ -1,5 +1,5 @@
-// Cross-post new notes/photos to Bluesky and Threads. Run after deploy.
-// State lives in data/syndicated.json: { "<slug>": { bluesky?: true, threads?: true } }
+// Cross-post new notes/photos and feed items to Bluesky and Threads. Run after deploy.
+// State lives in data/syndicated.json: { "<slug or url>": { bluesky?: true, threads?: true } }
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 
 const SITE = 'https://feed.casabona.org';
@@ -37,6 +37,11 @@ function* entries() {
       const slug = f.replace(/\.md$/, '');
       yield { slug, text: plain(m[2]), url: `${SITE}/${kind}/${slug}/` };
     }
+  }
+  const { items } = JSON.parse(readFileSync('data/feed-cache.json', 'utf8'));
+  for (const i of items) {
+    if (new Date(i.date) > new Date()) continue;
+    yield { slug: i.url, text: i.title, url: i.url };
   }
 }
 
