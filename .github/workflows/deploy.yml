@@ -60,6 +60,36 @@ jobs:
       - id: deployment
         uses: actions/deploy-pages@v4
 
+  # Cross-post new notes/photos once they're live. Skips any platform whose
+  # secrets aren't set. Secrets: BSKY_HANDLE, BSKY_APP_PASSWORD,
+  # THREADS_USER_ID, THREADS_TOKEN.
+  syndicate:
+    needs: deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node scripts/syndicate.mjs
+        env:
+          BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
+          BSKY_APP_PASSWORD: ${{ secrets.BSKY_APP_PASSWORD }}
+          THREADS_USER_ID: ${{ secrets.THREADS_USER_ID }}
+          THREADS_TOKEN: ${{ secrets.THREADS_TOKEN }}
+      - name: Commit syndication state
+        if: always()
+        run: |
+          if ! git diff --quiet -- data/syndicated.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add data/syndicated.json
+            git commit -m "chore: update syndication state"
+            git push
+          fi
+
   # GitHub disables scheduled workflows in public repos after 60 days without
   # repo activity. If no feed changes for two months, this monthly commit
   # counts as activity and keeps the schedule alive.
