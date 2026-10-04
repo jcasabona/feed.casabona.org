@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-03T14:58:19.842Z",
+  "updated": "2026-10-04T12:54:04.480Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Friday Wrap-Up for October 9, 2026",
+      "url": "https://www.youtube.com/watch?v=8Y9XxBOHtG4",
+      "date": "2026-10-04T12:43:44.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "8Y9XxBOHtG4"
+      }
+    },
     {
       "source": "casabona",
       "title": "AI and The Emperor's New Clothes",
