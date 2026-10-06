@@ -45,7 +45,7 @@ function* entries() {
   const { items } = JSON.parse(readFileSync('data/feed-cache.json', 'utf8'));
   for (const i of items) {
     if (new Date(i.date) > new Date()) continue;
-    yield { slug: i.url, text: i.title, url: i.url, images: [] };
+    yield { slug: i.url, text: i.title, url: i.url, images: [], source: i.source };
   }
 }
 
@@ -159,11 +159,14 @@ async function threads({ text, url, images }) {
   await call(`${THREADS_USER_ID}/threads_publish`, { creation_id: id });
 }
 
+// Feed sources a platform already posts natively (Transistor handles the podcast on Bluesky).
+const skip = { bluesky: ['podcast'], threads: [] };
+
 const senders = { bluesky, threads };
 let dirty = false;
 for (const e of entries()) {
   for (const [name, send] of Object.entries(senders)) {
-    if (!targets[name] || state[e.slug]?.[name]) continue;
+    if (!targets[name] || state[e.slug]?.[name] || skip[name].includes(e.source)) continue;
     try {
       await send(e);
       (state[e.slug] ??= {})[name] = true;
