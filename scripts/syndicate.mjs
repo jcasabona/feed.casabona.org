@@ -27,6 +27,21 @@ const plain = (md) =>
 
 const trim = (s, n) => ([...s].length <= n ? s : [...s].slice(0, n - 1).join('').trimEnd() + '…');
 
+// Same slug the site builds from the date (src/lib/time.ts dateSlug), not the CMS filename.
+function pageSlug(date) {
+  if (!/(Z|[+-]\d\d:?\d\d)$/.test(date)) {
+    const [y, mo, da, h, mi] = date.match(/(\d{4})-(\d\d)-(\d\d)[T ](\d\d):(\d\d)/).slice(1);
+    return `${y}-${mo}-${da}-${h}${mi}`;
+  }
+  const t = Object.fromEntries(
+    new Intl.DateTimeFormat('en-CA', {
+      timeZone: 'America/New_York', hourCycle: 'h23',
+      year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit',
+    }).formatToParts(new Date(date)).map((x) => [x.type, x.value]),
+  );
+  return `${t.year}-${t.month}-${t.day}-${t.hour}${t.minute}`;
+}
+
 function* entries() {
   for (const kind of ['notes', 'photos']) {
     for (const f of readdirSync(`src/content/${kind}`).filter((f) => f.endsWith('.md'))) {
@@ -39,7 +54,7 @@ function* entries() {
         path: x[1].trim().replace(/^['"]|['"]$/g, ''),
         alt: x[2].trim().replace(/^['"]|['"]$/g, ''),
       }));
-      yield { slug, text: plain(m[2]), url: `${SITE}/${kind}/${slug}/`, images };
+      yield { slug, text: plain(m[2]), url: `${SITE}/${kind}/${pageSlug(date)}/`, images };
     }
   }
   const { items } = JSON.parse(readFileSync('data/feed-cache.json', 'utf8'));
