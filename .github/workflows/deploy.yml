@@ -74,6 +74,10 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
+      - run: npm ci
+      # Screenshots for link cards use the runner's preinstalled Chrome.
+      - run: npm install --no-save playwright-core
       - run: node scripts/syndicate.mjs
         env:
           BSKY_HANDLE: ${{ secrets.BSKY_HANDLE }}
