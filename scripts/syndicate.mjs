@@ -60,24 +60,59 @@ function* entries() {
   const { items } = JSON.parse(readFileSync('data/feed-cache.json', 'utf8'));
   for (const i of items) {
     if (new Date(i.date) > new Date()) continue;
-    yield { slug: i.url, text: i.title, url: i.url, images: [], source: i.source };
+    yield { slug: i.url, text: i.title, url: i.url, images: [], source: i.source, title: i.title, excerpt: i.excerpt };
   }
 }
 
 // Resize/re-encode so each image fits Bluesky's 2 MB blob limit (also applies EXIF rotation).
-async function prep(path) {
+async function prep(input, limit = 1_900_000, max = 2000) {
   const { default: sharp } = await import('sharp');
-  let quality = 85, size = 2000;
+  let quality = 85, size = max;
   for (;;) {
-    const { data, info } = await sharp(`public${path}`).rotate()
+    const { data, info } = await sharp(input).rotate()
       .resize({ width: size, height: size, fit: 'inside', withoutEnlargement: true })
       .jpeg({ quality }).toBuffer({ resolveWithObject: true });
-    if (data.length <= 1_900_000 || quality <= 40) return { data, info };
+    if (data.length <= limit || quality <= 40) return { data, info };
     quality -= 10; size = Math.round(size * 0.9);
   }
 }
 
-async function bluesky({ text, url, images }) {
+const meta = (html, prop) => {
+  for (const tag of html.match(/<meta\s[^>]*>/gi) ?? []) {
+    if (new RegExp(`(?:property|name)=["']${prop}["']`, 'i').test(tag)) {
+      return tag.match(/content=(?:"([^"]*)"|'([^']*)')/i)?.slice(1).find(Boolean);
+    }
+  }
+};
+
+// Link-card thumbnail: the page's og:image, else a screenshot of the top of the page.
+async function cardThumb(url) {
+  try {
+    const html = await (await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (feed.casabona.org)' } })).text();
+    const og = meta(html, 'og:image');
+    if (og) {
+      const r = await fetch(new URL(og, url));
+      if (r.ok) return (await prep(Buffer.from(await r.arrayBuffer()), 950_000, 1200)).data;
+    }
+  } catch (err) {
+    console.error(`og:image for ${url}: ${err}`);
+  }
+  try {
+    const { chromium } = await import('playwright-core');
+    const browser = await chromium.launch({ channel: 'chrome', executablePath: process.env.CHROME_PATH });
+    try {
+      const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
+      await page.goto(url, { waitUntil: 'networkidle', timeout: 30_000 });
+      return (await prep(await page.screenshot({ type: 'jpeg', quality: 80 }), 950_000, 1200)).data;
+    } finally {
+      await browser.close();
+    }
+  } catch (err) {
+    console.error(`screenshot of ${url}: ${err}`);
+  }
+}
+
+async function bluesky({ text, url, images, title, excerpt }) {
   const base = 'https://bsky.social/xrpc';
   const post = async (path, body, token) => {
     const r = await fetch(`${base}/${path}`, {
@@ -95,7 +130,7 @@ async function bluesky({ text, url, images }) {
   if (images.length) {
     const uploaded = [];
     for (const img of images.slice(0, 4)) {
-      const { data, info } = await prep(img.path);
+      const { data, info } = await prep(`public${img.path}`);
       const r = await fetch(`${base}/com.atproto.repo.uploadBlob`, {
         method: 'POST',
         headers: { 'content-type': 'image/jpeg', authorization: `Bearer ${accessJwt}` },
@@ -109,6 +144,23 @@ async function bluesky({ text, url, images }) {
       });
     }
     embed = { $type: 'app.bsky.embed.images', images: uploaded };
+  }
+  if (title) {
+    const thumb = await cardThumb(url);
+    let blob;
+    if (thumb) {
+      const r = await fetch(`${base}/com.atproto.repo.uploadBlob`, {
+        method: 'POST',
+        headers: { 'content-type': 'image/jpeg', authorization: `Bearer ${accessJwt}` },
+        body: thumb,
+      });
+      if (r.ok) blob = (await r.json()).blob;
+      else console.error(`bluesky card thumb: ${r.status} ${await r.text()}`);
+    }
+    embed = {
+      $type: 'app.bsky.embed.external',
+      external: { uri: url, title, description: excerpt ?? '', ...(blob && { thumb: blob }) },
+    };
   }
   const body = text ? `${trim(text, 300 - url.length - 2)}\n\n${url}` : url;
   const enc = new TextEncoder();
