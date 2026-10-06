@@ -35,17 +35,34 @@ function* entries() {
       const date = m?.[1].match(/^date:\s*['"]?(\S+?)['"]?\s*$/m)?.[1];
       if (!date || date > now) continue;
       const slug = f.replace(/\.md$/, '');
-      yield { slug, text: plain(m[2]), url: `${SITE}/${kind}/${slug}/` };
+      const images = [...(m[1].matchAll(/- image:\s*(.+)\n\s+alt:\s*(.+)/g))].map((x) => ({
+        path: x[1].trim().replace(/^['"]|['"]$/g, ''),
+        alt: x[2].trim().replace(/^['"]|['"]$/g, ''),
+      }));
+      yield { slug, text: plain(m[2]), url: `${SITE}/${kind}/${slug}/`, images };
     }
   }
   const { items } = JSON.parse(readFileSync('data/feed-cache.json', 'utf8'));
   for (const i of items) {
     if (new Date(i.date) > new Date()) continue;
-    yield { slug: i.url, text: i.title, url: i.url };
+    yield { slug: i.url, text: i.title, url: i.url, images: [] };
   }
 }
 
-async function bluesky({ text, url }) {
+// Resize/re-encode so each image fits Bluesky's 2 MB blob limit (also applies EXIF rotation).
+async function prep(path) {
+  const { default: sharp } = await import('sharp');
+  let quality = 85, size = 2000;
+  for (;;) {
+    const { data, info } = await sharp(`public${path}`).rotate()
+      .resize({ width: size, height: size, fit: 'inside', withoutEnlargement: true })
+      .jpeg({ quality }).toBuffer({ resolveWithObject: true });
+    if (data.length <= 1_900_000 || quality <= 40) return { data, info };
+    quality -= 10; size = Math.round(size * 0.9);
+  }
+}
+
+async function bluesky({ text, url, images }) {
   const base = 'https://bsky.social/xrpc';
   const post = async (path, body, token) => {
     const r = await fetch(`${base}/${path}`, {
@@ -59,6 +76,25 @@ async function bluesky({ text, url }) {
   const { accessJwt, did } = await post('com.atproto.server.createSession', {
     identifier: BSKY_HANDLE, password: BSKY_APP_PASSWORD,
   });
+  let embed;
+  if (images.length) {
+    const uploaded = [];
+    for (const img of images.slice(0, 4)) {
+      const { data, info } = await prep(img.path);
+      const r = await fetch(`${base}/com.atproto.repo.uploadBlob`, {
+        method: 'POST',
+        headers: { 'content-type': 'image/jpeg', authorization: `Bearer ${accessJwt}` },
+        body: data,
+      });
+      if (!r.ok) throw new Error(`bluesky uploadBlob: ${r.status} ${await r.text()}`);
+      uploaded.push({
+        alt: img.alt,
+        image: (await r.json()).blob,
+        aspectRatio: { width: info.width, height: info.height },
+      });
+    }
+    embed = { $type: 'app.bsky.embed.images', images: uploaded };
+  }
   const body = text ? `${trim(text, 300 - url.length - 2)}\n\n${url}` : url;
   const enc = new TextEncoder();
   const byteStart = enc.encode(body.slice(0, body.lastIndexOf(url))).length;
@@ -69,6 +105,7 @@ async function bluesky({ text, url }) {
       $type: 'app.bsky.feed.post',
       text: body,
       createdAt: new Date().toISOString(),
+      ...(embed && { embed }),
       facets: [{
         index: { byteStart, byteEnd: byteStart + enc.encode(url).length },
         features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }],
@@ -77,8 +114,8 @@ async function bluesky({ text, url }) {
   }, accessJwt);
 }
 
-async function threads({ text, url }) {
-  const api = `https://graph.threads.net/v1.0/${THREADS_USER_ID}`;
+async function threads({ text, url, images }) {
+  const api = `https://graph.threads.net/v1.0`;
   const call = async (path, params) => {
     const r = await fetch(`${api}/${path}`, {
       method: 'POST',
@@ -87,10 +124,39 @@ async function threads({ text, url }) {
     if (!r.ok) throw new Error(`threads ${path}: ${r.status} ${await r.text()}`);
     return r.json();
   };
-  const { id } = await call('threads', {
-    media_type: 'TEXT', text: trim(text, 500), link_attachment: url,
-  });
-  await call('threads_publish', { creation_id: id });
+  // Media containers are processed asynchronously; wait until one is ready to publish.
+  const ready = async (id) => {
+    for (let i = 0; i < 30; i++) {
+      const r = await fetch(`${api}/${id}?fields=status&access_token=${THREADS_TOKEN}`);
+      const { status } = await r.json();
+      if (status === 'FINISHED') return;
+      if (status === 'ERROR' || status === 'EXPIRED') throw new Error(`threads container ${id}: ${status}`);
+      await new Promise((res) => setTimeout(res, 3000));
+    }
+    throw new Error(`threads container ${id}: timed out`);
+  };
+  const user = `${THREADS_USER_ID}/threads`;
+  let id;
+  if (images.length) {
+    const body = text ? `${trim(text, 500 - url.length - 2)}\n\n${url}` : url;
+    const items = images.slice(0, 20);
+    const multi = items.length > 1;
+    const ids = [];
+    for (const img of items) {
+      const { id: itemId } = await call(user, {
+        media_type: 'IMAGE',
+        image_url: SITE + encodeURI(img.path),
+        alt_text: img.alt,
+        ...(multi ? { is_carousel_item: 'true' } : { text: body }),
+      });
+      ids.push(itemId);
+    }
+    id = multi ? (await call(user, { media_type: 'CAROUSEL', children: ids.join(','), text: body })).id : ids[0];
+    await ready(id);
+  } else {
+    ({ id } = await call(user, { media_type: 'TEXT', text: trim(text, 500), link_attachment: url }));
+  }
+  await call(`${THREADS_USER_ID}/threads_publish`, { creation_id: id });
 }
 
 const senders = { bluesky, threads };
