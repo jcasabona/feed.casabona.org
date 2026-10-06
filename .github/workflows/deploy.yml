@@ -66,6 +66,7 @@ jobs:
   syndicate:
     needs: deploy
     runs-on: ubuntu-latest
+    environment: github-pages   # secrets are stored on this environment
     steps:
       - uses: actions/checkout@v4
         with:
