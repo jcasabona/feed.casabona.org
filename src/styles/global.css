@@ -91,3 +91,4 @@ audio { width: 100%; max-width: 40rem; display: block; }
   #lightbox .lb-alt { padding: 0.5rem 1rem 0; }
   #lightbox .lb-prev, #lightbox .lb-next { top: auto; bottom: 0.25rem; transform: none; }
 }
+.tag-title { margin: 1rem 0 0; font-size: 1.6rem; letter-spacing: -0.02em; }
