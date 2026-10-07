@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-06T06:56:45.943Z",
+  "updated": "2026-10-07T17:02:47.527Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "4 Tools I Will Never Replace With AI",
+      "url": "https://www.youtube.com/shorts/S4zU8SEqPZ4",
+      "date": "2026-10-07T14:47:10.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "S4zU8SEqPZ4"
+      }
+    },
     {
       "source": "podcast",
       "title": "4 Questions Before You Vibe Code a Tool Replacement",
