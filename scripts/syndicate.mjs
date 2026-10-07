@@ -1,6 +1,7 @@
 // Cross-post new notes/photos and feed items to Bluesky and Threads. Run after deploy.
 // State lives in data/syndicated.json: { "<slug or url>": { bluesky?: true, threads?: true } }
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
+import { TAG_PATTERN } from '../src/lib/tags.mjs';
 
 const SITE = 'https://feed.casabona.org';
 const STATE = 'data/syndicated.json';
@@ -23,7 +24,8 @@ const now = `${p.year}-${p.month}-${p.day}T${p.hour}:${p.minute}`;
 
 const plain = (md) =>
   md.replace(/!\[[^\]]*\]\([^)]*\)/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1')
-    .replace(/[*_`>]|^#+\s*/gm, '').replace(/\n{3,}/g, '\n\n').trim();
+    .replace(/\\#/g, '#')
+    .replace(/[*_`>]|^#{1,6}\s+/gm, '').replace(/\n{3,}/g, '\n\n').trim();
 
 const trim = (s, n) => ([...s].length <= n ? s : [...s].slice(0, n - 1).join('').trimEnd() + '…');
 
@@ -165,6 +167,15 @@ async function bluesky({ text, url, images, title, excerpt }) {
   const body = text ? `${trim(text, 300 - url.length - 2)}\n\n${url}` : url;
   const enc = new TextEncoder();
   const byteStart = enc.encode(body.slice(0, body.lastIndexOf(url))).length;
+  const tagFacets = [...body.matchAll(new RegExp(TAG_PATTERN, 'gm'))]
+    .filter((m) => body[m.index + m[0].length] !== '…') // skip a tag cut off by truncation
+    .map((m) => {
+      const start = enc.encode(body.slice(0, m.index + m[1].length)).length;
+      return {
+        index: { byteStart: start, byteEnd: start + enc.encode(`#${m[2]}`).length },
+        features: [{ $type: 'app.bsky.richtext.facet#tag', tag: m[2] }],
+      };
+    });
   await post('com.atproto.repo.createRecord', {
     repo: did,
     collection: 'app.bsky.feed.post',
@@ -173,10 +184,13 @@ async function bluesky({ text, url, images, title, excerpt }) {
       text: body,
       createdAt: new Date().toISOString(),
       ...(embed && { embed }),
-      facets: [{
-        index: { byteStart, byteEnd: byteStart + enc.encode(url).length },
-        features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }],
-      }],
+      facets: [
+        {
+          index: { byteStart, byteEnd: byteStart + enc.encode(url).length },
+          features: [{ $type: 'app.bsky.richtext.facet#link', uri: url }],
+        },
+        ...tagFacets,
+      ],
     },
   }, accessJwt);
 }
@@ -203,6 +217,9 @@ async function threads({ text, url, images }) {
     throw new Error(`threads container ${id}: timed out`);
   };
   const user = `${THREADS_USER_ID}/threads`;
+  // Threads allows one topic tag per post: use the first hashtag in the text.
+  const firstTag = text.match(new RegExp(TAG_PATTERN, 'm'))?.[2];
+  const topic = firstTag ? { topic_tag: firstTag.slice(0, 50) } : {};
   let id;
   if (images.length) {
     const body = text ? `${trim(text, 500 - url.length - 2)}\n\n${url}` : url;
@@ -214,14 +231,14 @@ async function threads({ text, url, images }) {
         media_type: 'IMAGE',
         image_url: SITE + encodeURI(img.path),
         alt_text: img.alt,
-        ...(multi ? { is_carousel_item: 'true' } : { text: body }),
+        ...(multi ? { is_carousel_item: 'true' } : { text: body, ...topic }),
       });
       ids.push(itemId);
     }
-    id = multi ? (await call(user, { media_type: 'CAROUSEL', children: ids.join(','), text: body })).id : ids[0];
+    id = multi ? (await call(user, { media_type: 'CAROUSEL', children: ids.join(','), text: body, ...topic })).id : ids[0];
     await ready(id);
   } else {
-    ({ id } = await call(user, { media_type: 'TEXT', text: trim(text, 500), link_attachment: url }));
+    ({ id } = await call(user, { media_type: 'TEXT', text: trim(text, 500), link_attachment: url, ...topic }));
   }
   await call(`${THREADS_USER_ID}/threads_publish`, { creation_id: id });
 }

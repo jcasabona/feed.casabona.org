@@ -1,0 +1,25 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Base from '../../layouts/Base.astro';
+import TimelineItem from '../../components/TimelineItem.astro';
+import { getTimeline } from '../../lib/timeline';
+import { extractTags } from '../../lib/tags.mjs';
+
+export const getStaticPaths = (async () => {
+  const byTag = new Map<string, Awaited<ReturnType<typeof getTimeline>>>();
+  for (const entry of await getTimeline()) {
+    if (entry.kind === 'external') continue;
+    for (const tag of extractTags(entry.entry.body ?? '')) {
+      byTag.set(tag, [...(byTag.get(tag) ?? []), entry]);
+    }
+  }
+  return [...byTag].map(([tag, entries]) => ({ params: { tag }, props: { tag, entries } }));
+}) satisfies GetStaticPaths;
+
+const { tag, entries } = Astro.props;
+---
+<Base title={`#${tag}`}>
+  <a class="back" href="/">← Timeline</a>
+  <h1 class="tag-title">#{tag}</h1>
+  {entries.map((entry) => <TimelineItem entry={entry} />)}
+</Base>
