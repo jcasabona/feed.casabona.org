@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-07T17:02:47.527Z",
+  "updated": "2026-10-08T22:32:36.927Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Should You Build Your Own Tools With AI? 4 Questions to Ask First",
+      "url": "https://www.youtube.com/watch?v=h717pbqxels",
+      "date": "2026-10-08T18:12:00.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "h717pbqxels"
+      }
+    },
     {
       "source": "youtube",
       "title": "4 Tools I Will Never Replace With AI",
