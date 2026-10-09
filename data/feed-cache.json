@@ -1,6 +1,18 @@
 {
-  "updated": "2026-10-09T16:39:12.093Z",
+  "updated": "2026-10-09T21:21:46.781Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "Is AI Really Saving You Time and Money? [Friday Wrap-Up]",
+      "url": "https://share.transistor.fm/s/305bf898",
+      "date": "2026-10-09T19:38:56.000Z",
+      "excerpt": "This week I talk about whether AI is really saving us time and money, and how using Claude to rebuild my WordPress theme between sections made this newsletter take longer than usual. Then Cal Newport on AI's jagged abilities, and…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/305bf898/904425de.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "Why I Built My Own Apple Music Stream Deck Plugin",
