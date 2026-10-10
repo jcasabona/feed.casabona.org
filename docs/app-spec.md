@@ -91,7 +91,7 @@ Editing or deleting existing posts, scheduling posts for later, saved drafts, co
 4. Name: **Feeder**.
 5. The Mac app has a menu bar quick-note item.
 
-Still open: bundle ID (for example `org.casabona.feeder`).
+6. Bundle ID: `goodhouse.feeder` (same prefix as Daily Three).
 
 ## Build plan and starter prompt
 
