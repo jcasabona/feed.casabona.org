@@ -1,6 +1,28 @@
 {
-  "updated": "2026-10-09T21:21:46.781Z",
+  "updated": "2026-10-10T07:48:10.802Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Is AI Really Saving You Time and Money? [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=8Y9XxBOHtG4",
+      "date": "2026-10-10T05:55:49.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "8Y9XxBOHtG4"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Should You Build Your Own Tools With AI? 4 Questions to Ask First",
+      "url": "https://www.youtube.com/watch?v=h717pbqxels",
+      "date": "2026-10-10T04:20:08.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "h717pbqxels"
+      }
+    },
     {
       "source": "podcast",
       "title": "Is AI Really Saving You Time and Money? [Friday Wrap-Up]",
@@ -22,17 +44,6 @@
       "media": {
         "type": "youtube",
         "videoId": "4t6QknhvAgA"
-      }
-    },
-    {
-      "source": "youtube",
-      "title": "Should You Build Your Own Tools With AI? 4 Questions to Ask First",
-      "url": "https://www.youtube.com/watch?v=h717pbqxels",
-      "date": "2026-10-08T18:12:00.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "h717pbqxels"
       }
     },
     {
@@ -65,17 +76,6 @@
       "date": "2026-10-05T17:45:49.000Z",
       "excerpt": "Last year we needed to have a new fence built. Ours was falling apart and we had a new puppy who would easily get out. So we had a few options: Option #3 also required skill, expertise, and the right…",
       "media": null
-    },
-    {
-      "source": "youtube",
-      "title": "Is AI Really Saving You Time and Money? [Friday Wrap-Up]",
-      "url": "https://www.youtube.com/watch?v=8Y9XxBOHtG4",
-      "date": "2026-10-04T12:43:44.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "8Y9XxBOHtG4"
-      }
     },
     {
       "source": "casabona",
