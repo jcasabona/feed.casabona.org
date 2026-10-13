@@ -1,6 +1,18 @@
 {
-  "updated": "2026-10-10T07:48:10.802Z",
+  "updated": "2026-10-13T08:35:12.589Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "No One Will Die if You Don’t Respond to Email Right Now",
+      "url": "https://streamlined.fm/559",
+      "date": "2026-10-13T06:00:00.000Z",
+      "excerpt": "Do you really need to answer every email right away? You definitely don’t. That’s a story we tell ourselves. But the truth is no one is sitting at their inbox waiting for your email. And in today’s episode, I tell…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/ed0eb7cb/64c4844f.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "Is AI Really Saving You Time and Money? [Friday Wrap-Up]",
