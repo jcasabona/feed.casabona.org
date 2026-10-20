@@ -1,6 +1,18 @@
 {
-  "updated": "2026-10-14T10:42:29.914Z",
+  "updated": "2026-10-20T08:55:51.114Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "Tools Are Not the Solution",
+      "url": "https://streamlined.fm/561",
+      "date": "2026-10-20T06:00:00.000Z",
+      "excerpt": "Sponsored by Heartbeat , the platform for building a community people will pay for. Run your membership, courses and live events in one place, and get 20% off your first 3 months with code CASABONA. Don’t get another tool until…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/1aff4cbd/464ecd5e.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "Live Coaching Call with Amy Beardsley",
