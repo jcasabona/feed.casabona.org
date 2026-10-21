@@ -33,10 +33,12 @@ Editing or deleting existing posts, scheduling posts for later, saved drafts, co
 **Compose note:** multiline markdown text, live counter for the Bluesky limit (300 characters including the link), hashtag highlighting.
 
 **Compose photo post:**
-- Pick photos (iOS `PhotosPicker`; macOS picker plus drag-and-drop).
+- **Multi-photo is a core requirement.** Select many photos at once (iOS `PhotosPicker` with multiple selection; macOS file picker with multiple selection), and on macOS **drag and drop many files together** onto the compose window, the Dock icon or the menu bar item. Dropping more files later adds to the post.
+- Drag to reorder photos; remove any before posting.
+- No practical size limit: any photo size or format (HEIC, JPEG, PNG) is accepted and shrunk on-device before upload (see Image handling). Never reject a photo for being too large.
 - Alt text per photo is required before posting.
 - Optional caption.
-- Warn above 4 photos: Bluesky posts only the first 4, Threads up to 20, the site shows all.
+- Warn above 4 photos (a warning only, never a block): Bluesky posts only the first 4, Threads up to 20, the site shows all.
 
 **Date/time:** always the moment you tap Post, formatted in America/New_York. No schedule picker.
 
