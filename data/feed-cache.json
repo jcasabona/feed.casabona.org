@@ -1,6 +1,28 @@
 {
-  "updated": "2026-10-20T08:55:51.114Z",
+  "updated": "2026-10-21T22:50:24.044Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "iPhone Duo First Impressions (I hope) [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=5TpkLzvD-HI",
+      "date": "2026-10-21T21:52:19.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "5TpkLzvD-HI"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Live Productivity and Tech Coaching",
+      "url": "https://www.youtube.com/watch?v=ePIOFrrFStQ",
+      "date": "2026-10-21T21:45:21.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "ePIOFrrFStQ"
+      }
+    },
     {
       "source": "podcast",
       "title": "Tools Are Not the Solution",
