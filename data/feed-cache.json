@@ -1,9 +1,44 @@
 {
-  "updated": "2026-10-24T07:39:42.580Z",
+  "updated": "2026-10-24T12:16:49.257Z",
   "items": [
     {
       "source": "youtube",
-      "title": "iPhone Duo First Impressions (I hope) [Friday Wrap-Up]",
+      "title": "My first 10 hours with the #iphoneduo",
+      "url": "https://www.youtube.com/shorts/G7xRIPBhZpg",
+      "date": "2026-10-24T11:26:28.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "G7xRIPBhZpg"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "The iPhone Duo Didn't Come But I Still Talked About It [Friday Wrap-Up]",
+      "url": "https://share.transistor.fm/s/0cd99e2d",
+      "date": "2026-10-24T10:17:48.000Z",
+      "excerpt": "This week I talk about why The Haunted Mansion is my favorite Disney attraction, and the lesson it has for solopreneurs: use new technology to improve the experience for your customers, not just to make things easier for yourself. Then…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/0cd99e2d/81313046.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "Protect Your Best Hours and Fix Your Pricing (Live Coaching with Amy Beardsley)",
+      "url": "https://share.transistor.fm/s/c1a42d5a",
+      "date": "2026-10-24T10:00:00.000Z",
+      "excerpt": "How do you stop feeling like an employee in your own business? In this live coaching call, Amy Beardsley and I work through it. We cover protecting your best working hours, planning three tasks a day instead of fifteen, moving…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/c1a42d5a/5fe44d4d.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "The iPhone Duo Didn't Come Yet (but I Talked About it Anyway) [Friday Wrap-Up]",
       "url": "https://www.youtube.com/watch?v=5TpkLzvD-HI",
       "date": "2026-10-24T05:43:09.000Z",
       "excerpt": "",
