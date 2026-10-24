@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-23T17:59:15.801Z",
+  "updated": "2026-10-24T07:39:42.580Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "iPhone Duo First Impressions (I hope) [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=5TpkLzvD-HI",
+      "date": "2026-10-24T05:43:09.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "5TpkLzvD-HI"
+      }
+    },
     {
       "source": "youtube",
       "title": "Small Systems That Cut Solopreneur Admin: Live Coaching with Rachel Alvarado",
@@ -10,17 +21,6 @@
       "media": {
         "type": "youtube",
         "videoId": "ePIOFrrFStQ"
-      }
-    },
-    {
-      "source": "youtube",
-      "title": "iPhone Duo First Impressions (I hope) [Friday Wrap-Up]",
-      "url": "https://www.youtube.com/watch?v=5TpkLzvD-HI",
-      "date": "2026-10-21T21:52:19.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "5TpkLzvD-HI"
       }
     },
     {
