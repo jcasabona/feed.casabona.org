@@ -1,6 +1,18 @@
 {
-  "updated": "2026-10-26T21:57:59.746Z",
+  "updated": "2026-10-27T06:54:21.041Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "Solopreneur Productivity: My Essential Apps, Devices, and Techniques",
+      "url": "https://share.transistor.fm/s/af1ae3d9",
+      "date": "2026-10-27T06:00:00.000Z",
+      "excerpt": "I’ve spent the last few episodes telling you the tools don’t matter. How you organize your day and spend your time is what really matters. But recently a friend on my mailing list asked for my top three devices, apps…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/af1ae3d9/826de1f9.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "Day 4 with #iphoneduo. Let’s talk about the camera.",
