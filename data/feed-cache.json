@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-27T18:25:18.876Z",
+  "updated": "2026-10-28T19:55:57.191Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "We Need to Talk About the Marissa Mayer Story [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=M84EWTUa6Ec",
+      "date": "2026-10-28T15:57:21.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "M84EWTUa6Ec"
+      }
+    },
     {
       "source": "podcast",
       "title": "My Essential Apps, Devices, and Techniques",
