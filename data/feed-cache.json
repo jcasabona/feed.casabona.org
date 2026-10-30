@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-29T22:05:05.849Z",
+  "updated": "2026-10-30T21:10:26.671Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "One week with the #iphoneduo",
+      "url": "https://www.youtube.com/shorts/ncyMKUjt8yw",
+      "date": "2026-10-30T19:49:00.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "ncyMKUjt8yw"
+      }
+    },
     {
       "source": "youtube",
       "title": "iPhone Duo Split Screen for Note Taking (Does It Boost Productivity?)",
