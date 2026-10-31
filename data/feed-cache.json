@@ -1,6 +1,18 @@
 {
-  "updated": "2026-10-31T07:36:39.259Z",
+  "updated": "2026-10-31T13:56:16.920Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "Small Systems That Cut Freelance Admin: Live Coaching with Rachel Alvarado",
+      "url": "https://share.transistor.fm/s/f58187c7",
+      "date": "2026-10-31T10:00:00.000Z",
+      "excerpt": "How do you cut the manual admin around client work when every project feels different? Copywriter and content strategist Rachel Alvarado and I go through her onboarding, audits, writing process and wrap-up. We land on small fixes: a testimonial ask…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/f58187c7/181f1673.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "We Need to Talk About the Marissa Mayer Story [Friday Wrap-Up]",
