@@ -1,6 +1,17 @@
 {
-  "updated": "2026-10-30T21:25:10.137Z",
+  "updated": "2026-10-31T07:36:39.259Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "We Need to Talk About the Marissa Mayer Story [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=M84EWTUa6Ec",
+      "date": "2026-10-31T05:51:05.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "M84EWTUa6Ec"
+      }
+    },
     {
       "source": "youtube",
       "title": "Can You Actually Type on the iPhone Duo in Laptop Mode?",
@@ -65,17 +76,6 @@
       "media": {
         "type": "youtube",
         "videoId": "0sCg92SPqRs"
-      }
-    },
-    {
-      "source": "youtube",
-      "title": "We Need to Talk About the Marissa Mayer Story [Friday Wrap-Up]",
-      "url": "https://www.youtube.com/watch?v=M84EWTUa6Ec",
-      "date": "2026-10-28T15:57:21.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "M84EWTUa6Ec"
       }
     },
     {
