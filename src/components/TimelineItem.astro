@@ -2,6 +2,7 @@
 import { render } from 'astro:content';
 import { sources, labelTextColor, podcastLinks } from '../config/sources';
 import { formatStamp } from '../lib/time';
+import { findYouTube } from '../lib/youtube.mjs';
 import type { TimelineEntry } from '../lib/timeline';
 
 interface Props { entry: TimelineEntry; permalink?: boolean }
@@ -14,6 +15,8 @@ const NoteBody = entry.kind === 'note' ? (await render(entry.entry)).Content : n
 const Caption = entry.kind === 'photo' && entry.entry.body?.trim() ? (await render(entry.entry)).Content : null;
 const item = entry.kind === 'external' ? entry.item : null;
 const isShort = item?.url.includes('/shorts/');
+// A YouTube link in a note plays inline below the text.
+const noteVideo = entry.kind === 'note' ? findYouTube(entry.entry.body ?? '') : null;
 ---
 <article class="row" id={entry.kind === 'external' ? undefined : entry.slug}>
   <div class="meta">
@@ -56,6 +59,18 @@ const isShort = item?.url.includes('/shorts/');
     )}
 
     {entry.kind === 'note' && NoteBody && <div class="note-body"><NoteBody /></div>}
+    {noteVideo && (
+      <div class:list={['embed', { portrait: noteVideo.short }]}>
+        <iframe
+          src={`https://www.youtube-nocookie.com/embed/${noteVideo.id}`}
+          title="YouTube video"
+          loading="lazy"
+          allow="accelerometer; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+      </div>
+    )}
 
     {entry.kind === 'photo' && (
       <>

@@ -2,6 +2,7 @@
 // State lives in data/syndicated.json: { "<slug or url>": { bluesky?: true, threads?: true } }
 import { readFileSync, readdirSync, writeFileSync, existsSync } from 'node:fs';
 import { TAG_PATTERN } from '../src/lib/tags.mjs';
+import { findYouTube } from '../src/lib/youtube.mjs';
 
 const SITE = 'https://feed.casabona.org';
 const STATE = 'data/syndicated.json';
@@ -56,13 +57,19 @@ function* entries() {
         path: x[1].trim().replace(/^['"]|['"]$/g, ''),
         alt: x[2].trim().replace(/^['"]|['"]$/g, ''),
       }));
-      yield { slug, text: plain(m[2]), url: `${SITE}/${kind}/${pageSlug(date)}/`, images };
+      const text = plain(m[2]);
+      // A YouTube link in a note becomes a Bluesky link card (inline player) instead of bare text.
+      const yt = !images.length && findYouTube(text);
+      yield {
+        slug, text, url: `${SITE}/${kind}/${pageSlug(date)}/`, images,
+        ...(yt && { card: { url: yt.url }, bskyText: text.replace(yt.url, '').replace(/\n{3,}/g, '\n\n').trim() }),
+      };
     }
   }
   const { items } = JSON.parse(readFileSync('data/feed-cache.json', 'utf8'));
   for (const i of items) {
     if (new Date(i.date) > new Date()) continue;
-    yield { slug: i.url, text: i.title, url: i.url, images: [], source: i.source, title: i.title, excerpt: i.excerpt };
+    yield { slug: i.url, text: i.title, url: i.url, images: [], source: i.source, card: { url: i.url, title: i.title, description: i.excerpt } };
   }
 }
 
@@ -87,14 +94,48 @@ const meta = (html, prop) => {
   }
 };
 
-// Link-card thumbnail: the page's og:image, else a screenshot of the top of the page.
-async function cardThumb(url) {
+const decode = (s) =>
+  s?.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#0?39;|&apos;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+
+// Link-card details: og title/description, and a thumbnail from og:image, else a screenshot of the top of the page.
+async function cardInfo(url) {
+  const info = {};
+  // YouTube rate-limits page scraping, so use its oEmbed endpoint and thumbnail host instead.
+  const yt = findYouTube(url);
+  if (yt) {
+    try {
+      const r = await fetch(`https://www.youtube.com/oembed?format=json&url=${encodeURIComponent(url)}`);
+      if (r.ok) {
+        const o = await r.json();
+        info.title = o.title;
+        info.description = o.author_name;
+      }
+    } catch (err) {
+      console.error(`oembed for ${url}: ${err}`);
+    }
+    for (const name of ['maxresdefault', 'hqdefault']) {
+      try {
+        const r = await fetch(`https://i.ytimg.com/vi/${yt.id}/${name}.jpg`);
+        if (r.ok) {
+          info.thumb = (await prep(Buffer.from(await r.arrayBuffer()), 950_000, 1200)).data;
+          return info;
+        }
+      } catch (err) {
+        console.error(`thumbnail for ${url}: ${err}`);
+      }
+    }
+  }
   try {
     const html = await (await fetch(url, { headers: { 'user-agent': 'Mozilla/5.0 (feed.casabona.org)' } })).text();
+    info.title = decode(meta(html, 'og:title'));
+    info.description = decode(meta(html, 'og:description'));
     const og = meta(html, 'og:image');
     if (og) {
-      const r = await fetch(new URL(og, url));
-      if (r.ok) return (await prep(Buffer.from(await r.arrayBuffer()), 950_000, 1200)).data;
+      const r = await fetch(new URL(decode(og), url));
+      if (r.ok) {
+        info.thumb = (await prep(Buffer.from(await r.arrayBuffer()), 950_000, 1200)).data;
+        return info;
+      }
     }
   } catch (err) {
     console.error(`og:image for ${url}: ${err}`);
@@ -105,16 +146,18 @@ async function cardThumb(url) {
     try {
       const page = await browser.newPage({ viewport: { width: 1200, height: 630 } });
       await page.goto(url, { waitUntil: 'networkidle', timeout: 30_000 });
-      return (await prep(await page.screenshot({ type: 'jpeg', quality: 80 }), 950_000, 1200)).data;
+      info.thumb = (await prep(await page.screenshot({ type: 'jpeg', quality: 80 }), 950_000, 1200)).data;
     } finally {
       await browser.close();
     }
   } catch (err) {
     console.error(`screenshot of ${url}: ${err}`);
   }
+  return info;
 }
 
-async function bluesky({ text, url, images, title, excerpt }) {
+async function bluesky({ text: fullText, bskyText, url, images, card }) {
+  const text = bskyText ?? fullText;
   const base = 'https://bsky.social/xrpc';
   const post = async (path, body, token) => {
     const r = await fetch(`${base}/${path}`, {
@@ -147,8 +190,9 @@ async function bluesky({ text, url, images, title, excerpt }) {
     }
     embed = { $type: 'app.bsky.embed.images', images: uploaded };
   }
-  if (title) {
-    const thumb = await cardThumb(url);
+  if (!embed && card) {
+    const info = await cardInfo(card.url);
+    const thumb = info.thumb;
     let blob;
     if (thumb) {
       const r = await fetch(`${base}/com.atproto.repo.uploadBlob`, {
@@ -161,7 +205,12 @@ async function bluesky({ text, url, images, title, excerpt }) {
     }
     embed = {
       $type: 'app.bsky.embed.external',
-      external: { uri: url, title, description: excerpt ?? '', ...(blob && { thumb: blob }) },
+      external: {
+        uri: card.url,
+        title: card.title ?? info.title ?? card.url,
+        description: card.description ?? info.description ?? '',
+        ...(blob && { thumb: blob }),
+      },
     };
   }
   const body = text ? `${trim(text, 300 - url.length - 2)}\n\n${url}` : url;
