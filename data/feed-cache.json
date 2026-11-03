@@ -1,6 +1,40 @@
 {
-  "updated": "2026-11-02T15:42:44.864Z",
+  "updated": "2026-11-03T08:42:25.660Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Being a Solopreneur Doesn’t Mean Doing It All Yourself",
+      "url": "https://www.youtube.com/watch?v=2EgN9LTjjf4",
+      "date": "2026-11-03T07:00:19.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "2EgN9LTjjf4"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "Being a Solopreneur Doesn’t Mean Doing It All Yourself",
+      "url": "https://streamlined.fm/566",
+      "date": "2026-11-03T07:00:00.000Z",
+      "excerpt": "When I made websites, or helped people launch their podcast, it was very easy to explain. But when I talk about saving 25 hours per month by building systems and workflows, that’s really unclear to a lot of people. I’m…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/5f19b80d/9b0ec0ab.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Can the #iPhoneDuo replace my reMarkable?",
+      "url": "https://www.youtube.com/shorts/fQDFWkhXceY",
+      "date": "2026-11-02T20:46:32.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "fQDFWkhXceY"
+      }
+    },
     {
       "source": "streamlined",
       "title": "The Right Way Is the Hard Way",
