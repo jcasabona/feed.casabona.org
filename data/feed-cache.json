@@ -1,6 +1,17 @@
 {
-  "updated": "2026-11-05T13:34:26.386Z",
+  "updated": "2026-11-05T20:51:09.464Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "I Vibe Coded My Own Tool. Here’s When You Shouldn’t.",
+      "url": "https://www.youtube.com/watch?v=3Ej-gNG-Zyk",
+      "date": "2026-11-05T15:00:38.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "3Ej-gNG-Zyk"
+      }
+    },
     {
       "source": "youtube",
       "title": "iPhone Duo vs Kindle ColorSoft: Can it replace your e-reader? #iphoneduo #kindle",
