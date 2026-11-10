@@ -1,6 +1,28 @@
 {
-  "updated": "2026-11-10T15:51:30.535Z",
+  "updated": "2026-11-10T21:29:59.793Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "I put Claude back on my #iphoneduo",
+      "url": "https://www.youtube.com/shorts/5gIeyzaION8",
+      "date": "2026-11-10T20:30:28.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "5gIeyzaION8"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "She used AI to describe her daughter. #ai #aibrainrot",
+      "url": "https://www.youtube.com/shorts/8NhE9EsD1UM",
+      "date": "2026-11-10T16:45:24.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "8NhE9EsD1UM"
+      }
+    },
     {
       "source": "youtube",
       "title": "How a Signature Framework Made My Solopreneur Business Recommendable",
