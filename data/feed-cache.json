@@ -1,6 +1,17 @@
 {
-  "updated": "2026-11-10T07:50:04.642Z",
+  "updated": "2026-11-10T15:51:30.535Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "How a Signature Framework Made My Solopreneur Business Recommendable",
+      "url": "https://www.youtube.com/watch?v=5U0gPcgq8Uc",
+      "date": "2026-11-10T07:00:15.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "5U0gPcgq8Uc"
+      }
+    },
     {
       "source": "podcast",
       "title": "How a Signature Framework Made My Solopreneur Business Recommendable",
@@ -11,6 +22,28 @@
         "type": "audio",
         "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/71a9e527/415fd2c7.mp3",
         "mime": "audio/mpeg"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "My favorite unexpected #iphoneduo use.",
+      "url": "https://www.youtube.com/shorts/1G60flswgcc",
+      "date": "2026-11-09T22:54:23.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "1G60flswgcc"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "What Happens When Your Vibe Coded App Breaks?",
+      "url": "https://www.youtube.com/shorts/HiwNHrPj350",
+      "date": "2026-11-09T18:00:12.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "HiwNHrPj350"
       }
     },
     {
