@@ -1,6 +1,18 @@
 {
-  "updated": "2026-11-09T17:52:28.391Z",
+  "updated": "2026-11-10T07:50:04.642Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "How a Signature Framework Made My Solopreneur Business Recommendable",
+      "url": "https://streamlined.fm/568",
+      "date": "2026-11-10T07:00:00.000Z",
+      "excerpt": "I was talking to a friend, and he said, “I don’t really know how to recommend you.” As someone whose whole business had been based on referrals, that was hard to hear. I knew I needed to get clear about…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/71a9e527/415fd2c7.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "streamlined",
       "title": "Using AI for Craft Undermines Trust",
