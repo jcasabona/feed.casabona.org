@@ -1,6 +1,18 @@
 {
-  "updated": "2026-11-13T18:11:48.394Z",
+  "updated": "2026-11-13T23:58:14.383Z",
   "items": [
+    {
+      "source": "podcast",
+      "title": "3 weeks with iPhone Duo and how to prep for Black Friday [Friday Wrap-Up]",
+      "url": "https://share.transistor.fm/s/f7054308",
+      "date": "2026-11-13T19:04:35.000Z",
+      "excerpt": "Three weeks with iPhone Duo, and the big lesson is one that applies to every system: design it for how you actually work, not how you think you should. That goes for Black Friday shopping, too. In this week's Friday…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/f7054308/7697634f.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "3 weeks with iPhone Duo and how to prep for Black Friday",
