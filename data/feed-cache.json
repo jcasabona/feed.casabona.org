@@ -1,6 +1,39 @@
 {
-  "updated": "2026-11-13T23:58:14.383Z",
+  "updated": "2026-11-14T11:49:37.716Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "3 weeks with iPhone Duo and how to prep for Black Friday",
+      "url": "https://www.youtube.com/watch?v=RK4Bygeyg1s",
+      "date": "2026-11-14T06:51:18.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "RK4Bygeyg1s"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Don’t Leeroy Jenkins your business",
+      "url": "https://www.youtube.com/shorts/85zRp4RGyZY",
+      "date": "2026-11-13T21:55:46.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "85zRp4RGyZY"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "3 weeks with iPhone Duo and how to prep for Black Friday [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=3wUdoq9cae8",
+      "date": "2026-11-13T19:08:24.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "3wUdoq9cae8"
+      }
+    },
     {
       "source": "podcast",
       "title": "3 weeks with iPhone Duo and how to prep for Black Friday [Friday Wrap-Up]",
@@ -15,18 +48,7 @@
     },
     {
       "source": "youtube",
-      "title": "3 weeks with iPhone Duo and how to prep for Black Friday",
-      "url": "https://www.youtube.com/watch?v=RK4Bygeyg1s",
-      "date": "2026-11-13T15:42:54.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "RK4Bygeyg1s"
-      }
-    },
-    {
-      "source": "youtube",
-      "title": "If it takes judgment, taste, or accountability, don't let AI do it.",
+      "title": "Why you should never let AI make this decision #ai #productivity #wisdom",
       "url": "https://www.youtube.com/shorts/4jmSJMB1yRQ",
       "date": "2026-11-12T18:01:08.000Z",
       "excerpt": "",
@@ -37,7 +59,7 @@
     },
     {
       "source": "youtube",
-      "title": "14 iPhone Duo Apps Every Solopreneur Needs",
+      "title": "Is the iPhone Duo Enough? 14 Apps to Help Solopreneurs Work Smarter",
       "url": "https://www.youtube.com/watch?v=M-RB0JPdSsg",
       "date": "2026-11-11T18:26:27.000Z",
       "excerpt": "",
@@ -48,7 +70,7 @@
     },
     {
       "source": "youtube",
-      "title": "Claude looks great on the iPhone Duo 😍",
+      "title": "Why I’m using Claude on my iPhone Duo now #productivity #tech",
       "url": "https://www.youtube.com/shorts/5gIeyzaION8",
       "date": "2026-11-10T20:30:28.000Z",
       "excerpt": "",
