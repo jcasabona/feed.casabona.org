@@ -1,6 +1,17 @@
 {
-  "updated": "2026-11-14T11:49:37.716Z",
+  "updated": "2026-11-15T20:38:52.695Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Reviewing my Weekly Plan",
+      "url": "https://www.youtube.com/watch?v=sDg15lLYyf0",
+      "date": "2026-11-15T17:01:28.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "sDg15lLYyf0"
+      }
+    },
     {
       "source": "youtube",
       "title": "3 weeks with iPhone Duo and how to prep for Black Friday",
