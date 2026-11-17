@@ -1,6 +1,40 @@
 {
-  "updated": "2026-11-16T17:33:24.545Z",
+  "updated": "2026-11-17T09:48:17.605Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "5 Solopreneur Tools I’m Digging (Plus 2 I Can’t Live Without)",
+      "url": "https://www.youtube.com/watch?v=Czcf4quHXKs",
+      "date": "2026-11-17T07:00:18.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "Czcf4quHXKs"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "5 Solopreneur Tools I’m Digging (Plus 2 I Can’t Live Without)",
+      "url": "https://streamlined.fm/569",
+      "date": "2026-11-17T07:00:00.000Z",
+      "excerpt": "Stop working 60 hour weeks. Solo Ops Toolkit Pro will give you everything you need to spend less time in your business without the decisions or learning curves. Join the waitlist to get notified and get 50% off for life…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/523cc9f3/bd13eba4.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Reviewing my Weekly Plan",
+      "url": "https://www.youtube.com/watch?v=sDg15lLYyf0",
+      "date": "2026-11-17T06:55:18.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "sDg15lLYyf0"
+      }
+    },
     {
       "source": "streamlined",
       "title": "How do you know when you’re overloaded?",
@@ -8,17 +42,6 @@
       "date": "2026-11-16T13:29:00.000Z",
       "excerpt": "I knew something was wrong when I was doing poorly at Pop Culture Jeopardy. If you know me, you know how often I make pop culture references. While I was watching Pop Culture Jeopardy, I wasn’t just getting questions wrong…",
       "media": null
-    },
-    {
-      "source": "youtube",
-      "title": "Reviewing my Weekly Plan",
-      "url": "https://www.youtube.com/watch?v=sDg15lLYyf0",
-      "date": "2026-11-15T17:01:28.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "sDg15lLYyf0"
-      }
     },
     {
       "source": "youtube",
