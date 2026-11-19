@@ -1,6 +1,28 @@
 {
-  "updated": "2026-11-18T01:24:00.183Z",
+  "updated": "2026-11-19T00:48:46.481Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "You won't remember it in the morning #productivity #solopreneur",
+      "url": "https://www.youtube.com/shorts/ZaWYVPimqIU",
+      "date": "2026-11-18T22:40:50.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "ZaWYVPimqIU"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Live Solopreneur Coaching",
+      "url": "https://www.youtube.com/watch?v=O-UjhDEWYCQ",
+      "date": "2026-11-18T20:32:34.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "O-UjhDEWYCQ"
+      }
+    },
     {
       "source": "youtube",
       "title": "Are you protecting your best working hours? #solopreneurs #productivity",
