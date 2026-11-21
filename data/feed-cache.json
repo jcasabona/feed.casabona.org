@@ -1,6 +1,17 @@
 {
-  "updated": "2026-11-21T02:53:41.161Z",
+  "updated": "2026-11-21T10:21:04.212Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "What is \"Proactive\" AI? Friday Wrap-Up for November 20, 2026",
+      "url": "https://www.youtube.com/watch?v=TU0IjnVQnsU",
+      "date": "2026-11-21T06:51:18.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "TU0IjnVQnsU"
+      }
+    },
     {
       "source": "youtube",
       "title": "Is Proactive AI Really Automation? [Friday Wrap-Up]",
@@ -42,17 +53,6 @@
       "date": "2026-11-20T14:01:33.000Z",
       "excerpt": "Yesterday I gained access to Claude Duet. Maybe it’s the Baader-Meinhof phenomenon, but 4 times in the course of a 30-hour period, someone asked about or mentioned Claude Duet. Maybe it’s just reaching a wider audience now, but I thought…",
       "media": null
-    },
-    {
-      "source": "youtube",
-      "title": "What is \"Proactive\" AI? Friday Wrap-Up for November 20, 2026",
-      "url": "https://www.youtube.com/watch?v=TU0IjnVQnsU",
-      "date": "2026-11-20T11:39:51.000Z",
-      "excerpt": "",
-      "media": {
-        "type": "youtube",
-        "videoId": "TU0IjnVQnsU"
-      }
     },
     {
       "source": "youtube",
