@@ -1,6 +1,40 @@
 {
-  "updated": "2026-11-21T10:21:04.212Z",
+  "updated": "2026-11-21T17:48:32.699Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "The Best Gifts for Solopreneurs (2026)",
+      "url": "https://www.youtube.com/shorts/sPKbWZ2eH5E",
+      "date": "2026-11-21T14:30:17.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "sPKbWZ2eH5E"
+      }
+    },
+    {
+      "source": "youtube",
+      "title": "Should You Ditch Mailchimp Since Bending Spoons Bought It? [Audio Note]",
+      "url": "https://www.youtube.com/watch?v=F2IBWWeteIQ",
+      "date": "2026-11-21T12:03:35.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "F2IBWWeteIQ"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "Should You Ditch Mailchimp Since Bending Spoons Bought It? [Audio Note]",
+      "url": "https://share.transistor.fm/s/171d8878",
+      "date": "2026-11-21T12:02:32.000Z",
+      "excerpt": "With the news that Bending Spoons acquired Mailchimp, you might be wondering: should you jump ship? Here’s why I think you shouldn’t…at least not yet.  Want all of my best advice in easy to implement cheat sheets? Get them…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/171d8878/4c42756c.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "What is \"Proactive\" AI? Friday Wrap-Up for November 20, 2026",
@@ -56,7 +90,7 @@
     },
     {
       "source": "youtube",
-      "title": "Live Solopreneur Coaching",
+      "title": "Solopreneur Systems for Your First Assistant: Live Coaching with Christina Fister",
       "url": "https://www.youtube.com/watch?v=O-UjhDEWYCQ",
       "date": "2026-11-19T10:25:57.000Z",
       "excerpt": "",
