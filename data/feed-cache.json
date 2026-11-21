@@ -1,6 +1,29 @@
 {
-  "updated": "2026-11-20T21:35:53.931Z",
+  "updated": "2026-11-21T02:53:41.161Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Is Proactive AI Really Automation? [Friday Wrap-Up]",
+      "url": "https://www.youtube.com/watch?v=B2CeW3s9lHQ",
+      "date": "2026-11-20T22:09:19.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "B2CeW3s9lHQ"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "Is Proactive AI Really Automation? [Friday Wrap-Up]",
+      "url": "https://share.transistor.fm/s/68256a60",
+      "date": "2026-11-20T22:05:10.000Z",
+      "excerpt": "This week I talk about proactive AI agents like Claude Duet — why they use the same triggers as traditional automations but guess at the action, and why that unpredictability makes them more of a liability than a time-saver. Then…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/68256a60/96597ec2.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "How to get rid of Google's AI Overview #tech #ai #search",
