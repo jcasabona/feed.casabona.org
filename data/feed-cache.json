@@ -1,6 +1,29 @@
 {
-  "updated": "2026-11-24T02:38:35.926Z",
+  "updated": "2026-11-24T12:59:43.100Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Solopreneur Systems Start Before the Tools",
+      "url": "https://www.youtube.com/watch?v=Rf7Ca-MHB9A",
+      "date": "2026-11-24T07:00:22.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "Rf7Ca-MHB9A"
+      }
+    },
+    {
+      "source": "podcast",
+      "title": "Solopreneur Systems Start Before the Tools",
+      "url": "https://streamlined.fm/572",
+      "date": "2026-11-24T07:00:00.000Z",
+      "excerpt": "Stop working 60 hour weeks. Solo Ops Toolkit Pro will give you everything you need to spend less time in your business without the decisions or learning curves. Join the waitlist to get notified and get 50% off for life…",
+      "media": {
+        "type": "audio",
+        "url": "https://op3.dev/e/dts.podtrac.com/redirect.mp3/media.transistor.fm/ec5bf927/9ceba823.mp3",
+        "mime": "audio/mpeg"
+      }
+    },
     {
       "source": "youtube",
       "title": "Should solopreneurs leave Mailchimp?",
