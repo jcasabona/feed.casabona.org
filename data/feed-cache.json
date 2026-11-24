@@ -1,6 +1,17 @@
 {
-  "updated": "2026-11-23T15:28:21.714Z",
+  "updated": "2026-11-24T02:38:35.926Z",
   "items": [
+    {
+      "source": "youtube",
+      "title": "Should solopreneurs leave Mailchimp?",
+      "url": "https://www.youtube.com/shorts/zjjvvd6w5MQ",
+      "date": "2026-11-23T15:30:22.000Z",
+      "excerpt": "",
+      "media": {
+        "type": "youtube",
+        "videoId": "zjjvvd6w5MQ"
+      }
+    },
     {
       "source": "streamlined",
       "title": "AI Is Causing More Project Thrashing and It’s Costing Solopreneurs",
